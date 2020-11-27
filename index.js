@@ -195,4 +195,289 @@ const exportPublishedTable = async () => {
 		console.error(error);
 	}
 };
-exportPublishedTable();
+// exportPublishedTable();
+
+// -------------------------------------- Table Rows --------------------------------------
+const createTableRow = async () => {
+	try {
+		const body = {
+			values: {
+				4: "200mph",
+				5: "Tesla",
+			},
+		};
+
+		const { data } = await axios.post(
+			`${API}/racecars/rows?hapikey=${API_KEY}`,
+			body
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// createTableRow();
+
+const listLiveTableRows = async () => {
+	try {
+		const { data } = await axios.get(`${API}/racecars/rows?hapikey=${API_KEY}`);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// listLiveTableRows();
+
+const listDraftTableRows = async () => {
+	try {
+		const { data } = await axios.get(
+			`${API}/racecars/rows/draft?hapikey=${API_KEY}`
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// listDraftTableRows();
+
+const getLiveTableRow = async () => {
+	try {
+		const { data } = await axios.get(
+			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322684?hapikey=${API_KEY}`
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// getLiveTableRow();
+
+const getDraftTableRow = async () => {
+	try {
+		const { data } = await axios.get(
+			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322684/draft?hapikey=${API_KEY}`
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// getDraftTableRow();
+
+const updateTableRow = async () => {
+	try {
+		const body = {
+			values: {
+				top_speed: "210mph",
+				make: "Mustang",
+			},
+		};
+
+		const { data } = await axios.patch(
+			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322684/draft?hapikey=${API_KEY}`,
+			body
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// updateTableRow();
+
+const replaceTableRow = async () => {
+	try {
+		const body = {
+			values: {
+				top_speed: "212mph",
+				make: "Rocket",
+			},
+		};
+
+		const { data } = await axios.put(
+			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322684/draft?hapikey=${API_KEY}`,
+			body
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// replaceTableRow();
+
+const deleteTableRow = async () => {
+	try {
+		await axios.delete(
+			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322685/draft?hapikey=${API_KEY}`
+		);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// deleteTableRow();
+
+const cloneTableRow = async () => {
+	try {
+		const headers = {
+			"Content-Type": "application/json",
+		};
+
+		const { data } = await axios.post(
+			`${API}/racecars/rows/38099322683/draft/clone?hapikey=${API_KEY}`,
+			{},
+			{ headers }
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// cloneTableRow();
+
+// -------------------------------------- Table Rows Batch --------------------------------------
+const batchGetLiveRows = async () => {
+	try {
+		const body = { inputs: [38099322683, 38099635440] };
+
+		const { data } = await axios.post(
+			`${API}/racecars/rows/batch/read?hapikey=${API_KEY}`,
+			body
+		);
+
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// batchGetLiveRows();
+
+const batchCloneRows = async () => {
+	try {
+		const body = { inputs: [38099322683, 38099635440] };
+
+		const { data } = await axios.post(
+			`${API}/racecars/rows/draft/batch/clone?hapikey=${API_KEY}`,
+			body
+		);
+
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// batchCloneRows();
+
+const batchCreateTableRow = async () => {
+	try {
+		const body = {
+			inputs: [
+				{
+					values: {
+						4: "201mph",
+						5: "BMW",
+					},
+				},
+			],
+		};
+
+		const { data } = await axios.post(
+			`${API}/racecars/rows/draft/batch/create?hapikey=${API_KEY}`,
+			body
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// batchCreateTableRow();
+
+const batchDeleteRows = async () => {
+	try {
+		const body = { inputs: [38099322683, 38099635440] };
+
+		await axios.post(
+			`${API}/racecars/rows/draft/batch/purge?hapikey=${API_KEY}`,
+			body
+		);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// batchDeleteRows();
+
+const batchGetDraftRows = async () => {
+	try {
+		const body = { inputs: [38099322683, 38099635440] };
+
+		const { data } = await axios.post(
+			`${API}/racecars/rows/draft/batch/read?hapikey=${API_KEY}`,
+			body
+		);
+
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// batchGetDraftRows();
+
+const batchReplaceRows = async () => {
+	try {
+		const body = {
+			inputs: [
+				{
+					values: {
+						4: "211mph",
+						5: "Dongfeng",
+					},
+					id: 38099714222,
+				},
+				{
+					values: {
+						4: "222mph",
+						5: "Xiaokang",
+					},
+					id: 38099714223,
+				},
+			],
+		};
+
+		const { data } = await axios.post(
+			`${API}/racecars/rows/draft/batch/replace?hapikey=${API_KEY}`,
+			body
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// batchReplaceRows();
+
+const batchUpdateRows = async () => {
+	try {
+		const body = {
+			inputs: [
+				{
+					values: {
+						make: "Dongfeng222",
+					},
+					id: 38099714222,
+				},
+				{
+					values: {
+						make: "Xiaokang222",
+					},
+					id: 38099714223,
+				},
+			],
+		};
+
+		const { data } = await axios.post(
+			`${API}/racecars/rows/draft/batch/update?hapikey=${API_KEY}`,
+			body
+		);
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+};
+// batchUpdateRows();
