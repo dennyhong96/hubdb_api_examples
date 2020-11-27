@@ -243,7 +243,7 @@ const listDraftTableRows = async () => {
 const getLiveTableRow = async () => {
 	try {
 		const { data } = await axios.get(
-			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322684?hapikey=${API_KEY}`
+			`${API}/racecars/rows/38099322684?hapikey=${API_KEY}`
 		);
 		console.log(data);
 	} catch (error) {
@@ -255,7 +255,7 @@ const getLiveTableRow = async () => {
 const getDraftTableRow = async () => {
 	try {
 		const { data } = await axios.get(
-			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322684/draft?hapikey=${API_KEY}`
+			`${API}/racecars/rows/38099322684/draft?hapikey=${API_KEY}`
 		);
 		console.log(data);
 	} catch (error) {
@@ -274,7 +274,7 @@ const updateTableRow = async () => {
 		};
 
 		const { data } = await axios.patch(
-			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322684/draft?hapikey=${API_KEY}`,
+			`${API}/racecars/rows/38099322684/draft?hapikey=${API_KEY}`,
 			body
 		);
 		console.log(data);
@@ -294,7 +294,7 @@ const replaceTableRow = async () => {
 		};
 
 		const { data } = await axios.put(
-			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322684/draft?hapikey=${API_KEY}`,
+			`${API}/racecars/rows/38099322684/draft?hapikey=${API_KEY}`,
 			body
 		);
 		console.log(data);
@@ -307,7 +307,7 @@ const replaceTableRow = async () => {
 const deleteTableRow = async () => {
 	try {
 		await axios.delete(
-			`https://api.hubapi.com/cms/v3/hubdb/tables/racecars/rows/38099322685/draft?hapikey=${API_KEY}`
+			`${API}/racecars/rows/38099322685/draft?hapikey=${API_KEY}`
 		);
 	} catch (error) {
 		console.error(error);
